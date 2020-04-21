@@ -18,13 +18,13 @@ public class driverClass {
 
 class workerClass{
 	
-	ArrayList sol = new ArrayList();
+	ArrayList sol = new ArrayList();	//main arrayList; contains solutions across all axes
 	ArrayList xsoln = new ArrayList();
 	ArrayList ysoln = new ArrayList();
 	ArrayList zsoln = new ArrayList();
 
 	public void math() {
-		//parameters used by Lorenz boi (according to Wikipedia)
+		//parameters used by Lorenz (according to Wikipedia)
 		float sigma = 10;
 		float rho = 28;
 		float beta = 8/3;
@@ -34,7 +34,7 @@ class workerClass{
 		double rand = Math.random();
 		System.out.println("Random value: " + rand);
 		
-		x = y = z = (float) rand; //0.15;
+		x = y = z = (float) rand; 
 		
 		float dt = (float) 0.01;
 		
@@ -52,7 +52,7 @@ class workerClass{
 			collectSoln(x, y, z);
 		}	
 		collectArr();
-		printArray();
+//		printArray();
 	}
 	
 	public void collectSoln(float x, float y, float z){
@@ -63,7 +63,7 @@ class workerClass{
 	}
 	
 	public void collectArr() {
-		//add array to the main arraylist
+		//add array to the main arrayList
 		sol.add(xsoln);
 		sol.add(ysoln);
 		sol.add(zsoln);	
@@ -81,25 +81,17 @@ class workerClass{
 		for(int q = 0; q < myArrSize; q++) {
 //			sum = xsoln.get(q) + ysoln.get(q) + zsoln.get(q);
 			System.out.println("x: \t" + xsoln.get(q) + "\ty: " + ysoln.get(q) + "\tz: " + zsoln.get(q));
-		}
-		
-//		System.out.println(sol.get(2).getOject());
-//		Object[] ob = sol.toArray();
-//
-//	      System.out.println("Printing elements from first to last:"); 
-//	      for (Object value : ob) {
-//	         System.out.println("Number = " + value);
-//	      }
+		}	
 	}
 	
 	public int randomPick(){
+		//method for selecting teams
 		SecureRandom rand = new SecureRandom();
 		int selectedTeam = 1;
-		int randAxis = rand.nextInt(3);
-		int randSoln = rand.nextInt(50);
+		int randAxis = rand.nextInt(3);	//for selecting axis
+		int randSoln = rand.nextInt(50);//for selecting solution in that axis
 		float roundOut = 0;
 		float pickSoln = 0;
-//		System.out.println("Random axis: " + randAxis);
 		
 		if(randAxis == 1) {
 			pickSoln = (float) (xsoln.get(randSoln));
@@ -123,21 +115,10 @@ class workerClass{
 		}
 		
 		return selectedTeam;
-		
-//		switch(randAxis){
-//		case 0:
-//			System.out.println("It's 0: " + randAxis);
-//		case 1:
-//			System.out.println("Random int is: " + randAxis);
-//		case 2: 
-//			System.out.println("It's 2: " + randAxis);
-//		}
 	}
 	
 	public void teamSort() {
-		String mates[] = new String[10];
-//		String Team1[] = new String[10];
-//		String Team2[] = new String[10];
+		String mates[] = new String[10]; // 10 people were doing the Escape Room
 		ArrayList<String> Team1 = new ArrayList<String>();
 		ArrayList<String> Team2 = new ArrayList<String>();
 		mates[0] = "Cristy";
@@ -149,10 +130,9 @@ class workerClass{
 		mates[6] = "Conor";
 		mates[7] = "David";
 		mates[8] = "Seamas";
-		mates[9] = "Daryl's bf";
+		mates[9] = "Pablo";
 		
 		for(int t = 0; t < mates.length; t++) {
-//			System.out.println(mates[t] + " is on Team " + randomPick());
 			if(randomPick() == 1) {
 				Team1.add(mates[t]);
 			}else {
@@ -167,6 +147,7 @@ class workerClass{
 		System.out.println("Team 1 size: " + Team1.size());
 		int t1 = Team1.size();
 		int t2 = Team2.size();
+		// if the teams aren't even, run this section
 		if(t1 != t2) {
 			System.out.println("Your teams aren't even. \n" + "Trying again...");
 			evenTeams(Team1, Team2, t1, t2);
@@ -175,23 +156,20 @@ class workerClass{
 			System.out.println("Team 2: ");
 			printList(Team2);
 		}else {
-			System.out.println("We good.");
+			System.out.println("We're good!");
 		}
 	
 	}
 	
 	public void evenTeams(ArrayList<String> Team1, ArrayList<String> Team2, int t1, int t2) {
 		int diff = Math.abs(t1 - t2);
-//		System.out.println(diff);
 		
 		if(t1 > t2) {
 			do{
 				int x = Math.abs(Team1.size() - Team2.size());
 				diff = x;
-//				System.out.println(Team1.size() - Team2.size());
 				Team2.add(Team1.get(x));
 				Team1.remove(x);
-//				System.out.println(Team1.remove(x));
 			}while(Team2.size() != 5);
 		}else {
 			do{
