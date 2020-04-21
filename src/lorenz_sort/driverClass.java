@@ -72,14 +72,9 @@ class workerClass{
 	public void printArray() {
 		int mySize = sol.size();
 		int myArrSize = xsoln.size();
-		float sum = 0;
 		System.out.println(mySize);
-		for(int q = 0; q < mySize; q++) {
-//			sum = xsoln.get(q) + ysoln.get(q) + zsoln.get(q);
-//			System.out.println("x: \n" + sol.get(q));// + "\ty: " + ysoln.get(q) + "\tz: " + zsoln.get(q));
-		}
+
 		for(int q = 0; q < myArrSize; q++) {
-//			sum = xsoln.get(q) + ysoln.get(q) + zsoln.get(q);
 			System.out.println("x: \t" + xsoln.get(q) + "\ty: " + ysoln.get(q) + "\tz: " + zsoln.get(q));
 		}	
 	}
@@ -96,18 +91,14 @@ class workerClass{
 		if(randAxis == 1) {
 			pickSoln = (float) (xsoln.get(randSoln));
 			roundOut = Math.round(pickSoln);
-//			System.out.println("Rounded value: " + roundOut);
 		}else if(randAxis == 2) {
 			pickSoln = (float) (ysoln.get(randSoln));
 			roundOut = Math.round(pickSoln);
-//			System.out.println("Rounded value: " + roundOut);
 		}else if(randAxis == 0) {
 			pickSoln = (float) (zsoln.get(randSoln));
 			roundOut = Math.round(pickSoln);
-//			System.out.println("Rounded value: " + roundOut);
 		}
 		
-//		System.out.println("Selected value: " + pickSoln + "; Rounded val: " + roundOut);
 		if(roundOut % 2 == 0) {
 			selectedTeam = 1;
 		}else {
@@ -158,7 +149,6 @@ class workerClass{
 		}else {
 			System.out.println("We're good!");
 		}
-	
 	}
 	
 	public void evenTeams(ArrayList<String> Team1, ArrayList<String> Team2, int t1, int t2) {
@@ -175,12 +165,10 @@ class workerClass{
 			do{
 				int x = Math.abs(Team1.size() - Team2.size());
 				diff = x;
-//				System.out.println(Team1.size() - Team2.size());
 				Team1.add(Team2.get(x));
 				Team2.remove(x);
 			}while(Team1.size() != 5);
-		}
-		
+		}	
 	}
 	
 	public void printList(ArrayList<String> list) {
